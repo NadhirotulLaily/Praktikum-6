@@ -7,6 +7,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class Absen {
 
@@ -48,23 +49,22 @@ public class Absen {
             System.out.println("\n");
         }
     }
-
-    // Fungsi untuk mengecek format nomor ponsel
-    // Mengembalikan nilai true apabila format benar dan false apabila salah
     boolean cekNomorPonsel(String s) {
-        return false;
+        
+        return s.matches("^(\\+62|62|0)8[1-9]{6,10}$");
+        }
 
-    }
 
-    // Fungsi untuk mencetak semua daftar pengunjung dalam bentuk tabel pada konsol
-    // Contoh:
-    // +------------------+---------------+-------------------+
-    // | Nama Lengkap     | Asal Kota     | Nomor Ponsel      |
-    // +------------------+---------------+-------------------+
-    // | Budi Hartono     | Malang        | 1234512345        |
-    // | Iwan Sutrisno    | Banyuwangi    | 23456723456       |
-    // +------------------+---------------+-------------------+
     void cetakDaftarPengunjung() {
+        String formatcetak = "| %-23s | %-18s | %-18s |%n";
 
+        System.out.format("+-------------------------+--------------------+--------------------+%n");
+        System.out.format("| Nama Lengkap            |  Asal Kota         | Nomor Ponsel       |%n");
+        System.out.format("+-------------------------+--------------------+--------------------+%n");
+        
+        for (Pengunjung list    : listPengunjung) {
+            System.out.format(formatcetak, list.getnamaLengkap(), list.getasalKota(), list.getnomorPonsel());
+        }
+        System.out.format("+-------------------------+--------------------+--------------------+%n");
     }
 }
